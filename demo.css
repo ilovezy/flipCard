@@ -5,48 +5,39 @@ body {
 
 .tile_container {
     overflow: hidden;
-    width: 90vmin;
-    height: 90vmin;
+    width: 98vmin;
+    height: 98vmin;
     margin-left: auto;
     margin-right: auto;
 }
 
-.tile {
+.tile-wrap {
     display: block;
     float: left;
     border-radius: 5%;
     overflow: hidden;
     position: relative;
     cursor: pointer;
-    width: 17%;
-    height: 17%;
-    margin: 4%;
-    background-color: #57a7cc;
+    width: 21%;
+    height: 21%;
+    margin: 2%;
+    box-sizing: border-box;
 }
 
-.tile:after {
-    content: '';
-    display: block;
+.tile-front {
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
     width: 100%;
     height: 100%;
-    border-radius: 5%;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    transition: transform 0.2s;
-    background-color: #e25445;
+    transform: rotateY(180deg);
+    z-index: 1;
+    backface-visibility: hidden;
+    transition: transform 0.5s;
 }
 
-.tile_open:after {
-    transition: transform 0.2s;
-    transform: translateX(-105%);
-}
-
-.tile:hover:after {
-    background-color: #e25445;
-}
-
-.tile .fa {
+.tile-front .card {
     text-align: center;
     width: 100%;
     height: 100%;
@@ -57,14 +48,39 @@ body {
     line-height: 16vmin;
 }
 
-.tile_removed {
-    cursor: default;
-    opacity: 0;
-    transition: opacity 0.5s;
-    background-color: #57a7cc;
+.tile-back {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 5%;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: #e25445;
+    z-index: 2;
+    backface-visibility: hidden;
+    transition: transform 0.5s;
 }
 
+.tile-front.tile_open {
+    transition: transform 0.5s;
+    transform: rotate3d(0, 1, 0, 0deg)
+}
 
+.tile-back.tile_open {
+    transition: transform 0.5s;
+    transform: rotate3d(0, 1, 0, -180deg)
+}
+
+.tile_removed {
+    cursor: default;
+    /*opacity: 0;*/
+    transition: all 0.5s;
+    transform: scale(0);
+    transition-delay: 0.6s;
+    background-color: #57a7cc;
+}
 
 /*Overlay*/
 .overlay_win {
@@ -74,6 +90,7 @@ body {
     height: 40vmin;
     width: 100%;
     text-align: center;
+    z-index: -1;
 }
 
 .overlay_win {
@@ -84,11 +101,7 @@ body {
     font-size: 15vmin;
     line-height: 15vmin;
     margin: 5vmin 0px;
-}
-
-.overlay_win h2 {
     color: #112;
-    font-family: 'Roboto', sans-serif;
 }
 
 #replay {

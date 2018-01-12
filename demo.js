@@ -2,12 +2,16 @@ function shuffle() {
   var j;
   var t;
 
-  var tempArr = [
-    "eye", "eye", "eye", "eye",
-    "star", "star", "star", "star",
-    "heart", "heart", "heart", "heart",
-    "diamond", "diamond", "diamond", "diamond"
-  ];
+  var orgArr = ['fu1.png', 'fu2.png', 'fu3.png', 'fu4.png', 'fu5.png', 'fu6.png']
+
+  var sameleArr = _.sample(orgArr, 4);
+
+  var tempArr = []
+  sameleArr.map(function (value) {
+    for (var i = 0; i < 4; i++){
+      tempArr.push(value)
+    }
+  })
 
   var tempObjArr = []
   tempArr.map(function (item) {
@@ -55,7 +59,7 @@ var app = new Vue({
     },
 
     flipTile: function (item, i) {
-      if (item.isRemoved){
+      if (item.isRemoved) {
         return
       }
       var self = this
@@ -65,16 +69,14 @@ var app = new Vue({
       if (self.tileCount == 1) {
         if (i != self.lastTile
           && self.tileList[i].type == self.tileList[self.lastTile].type) {
+            self.tileList[i].isRemoved = true
+            self.tileList[self.lastTile].isRemoved = true
 
-          self.tileList[i].isRemoved = true
-          self.tileList[self.lastTile].isRemoved = true
+            self.pairCount++
 
-          self.pairCount++
-
-          if (self.pairCount == 8){
-            alert('Fuck yeah!!!') // success
-          }
-
+            if (self.pairCount == 8) {
+              alert('Fuck yeah!!!') // success
+            }
         } else {
           self.removeDelay(self.openTile, self.lastTile)
         }
@@ -91,7 +93,7 @@ var app = new Vue({
       setTimeout(function () {
         self.removeSelect(first)
         self.removeSelect(second)
-      }, 1000);
+      }, 800);
     },
 
     removeSelect: function (i) {
