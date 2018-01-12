@@ -9,19 +9,28 @@
 <body>
 
 <div id="app" class="tile_container">
-  <div class="tile" v-for="n in 16">
-    hello world
-    <i class="fa" id="'tile_icon_' + n"></i>
+  <div class="tile"
+       v-for="(item, i) in tileList"
+       :class="{
+         'tile_open': item.isOpen,
+         'tile_removed': item.isRemoved
+       }"
+       @click="flipTile(item, i)"
+       :id="'tile_' + i">
+    <i class="fa"
+       :class="'fa-' + item.type"
+       :id="'tile_icon_' + i"></i>
   </div>
+
+
+  <div class="overlay_win" id="overlay_win">
+    <h2>You win!</h2>
+    <div id="replay" @click="replay()">Play again</div>
+  </div>
+
 </div>
 
-<div class="overlay_win" id="overlay_win">
-  <h2>You win!</h2>
-  <div id="replay">Play again</div>
-</div>
-
-
-<script src="vue.min.js"></script>
+<script src="vue.js"></script>
 <script src="demo.js"></script>
 
 </body>

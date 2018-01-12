@@ -1,6 +1,17 @@
 body {
     margin: 0;
+    background-color: #e2e2e2;
     padding: 0;
+}
+
+/*Dimensions*/
+/*This is be used to make it more responsive*/
+.tile_container {
+    overflow: hidden;
+    width: 90vmin;
+    height: 90vmin;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .tile {
@@ -10,6 +21,13 @@ body {
     overflow: hidden;
     position: relative;
     cursor: pointer;
+    width: 100px;
+    width: 17%;
+    height: 100px;
+    height: 17%;
+    margin: 20px;
+    margin: 4%;
+    background-color: #57a7cc;
 }
 
 .tile:nth-of-type(4n + 1) {
@@ -23,11 +41,10 @@ body {
     height: 100%;
     border-radius: 5%;
     position: absolute;
-    /*left:0; top:0;*/
     bottom: 0;
     right: 0;
-
     transition: transform 0.2s;
+    background-color: #e25445;
 }
 
 .tile_open:after {
@@ -40,65 +57,27 @@ body {
     width: 100%;
     height: 100%;
     color: #fff;
-}
-
-.tile_closed {
-    cursor: normal;
-    opacity: 0;
-    transition: opacity 0.5s;
-}
-
-/*Colours*/
-
-body {
-    background-color: #e2e2e2;
-}
-
-.tile:after {
-    background-color: #e25445;
-}
-
-.tile:hover:after {
-    background-color: #e25445;
-}
-
-.tile {
-    background-color: #57a7cc;
-}
-
-.tile_closed {
-    background-color: #57a7cc;
-}
-
-/*Dimensions*/
-/*This is be used to make it more responsive*/
-
-.tile_container {
-    overflow: hidden;
-    width: 90vmin;
-    height: 90vmin;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.tile .fa {
     font-size: 70px;
     font-size: 10vmin;
     line-height: 100px;
     line-height: 16vmin;
 }
 
-.tile {
-    width: 100px;
-    width: 17%;
-    height: 100px;
-    height: 17%;
-    margin: 20px;
-    margin: 4%;
+.tile_closed {
+    cursor: normal;
+    opacity: 0;
+    transition: opacity 0.5s;
+    background-color: #57a7cc;
+}
+
+/*Colours*/
+
+
+.tile:hover:after {
+    background-color: #e25445;
 }
 
 /*Overlay*/
-
 .overlay_win {
     position: absolute;
     bottom: 25vmin;
@@ -138,11 +117,6 @@ body {
     background-color: #3c71b3;
 }
 
-/*.overlay_win {*/
-/*opacity: 0;*/
-/*transition: opacity 0.4s;*/
-/*pointer-events: none;*/
-/*}*/
 .overlay_win {
     opacity: 0.9;
     transition: opacity 0.4s;

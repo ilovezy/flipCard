@@ -1,3 +1,20 @@
+//variables
+var A = shuffle(); //shuffle the tiles
+window.paircount = 0; //tracks the number of matches
+window.tilecount = 0; //tracks the number of open tiles
+window.lasttile = null; //tracks the last open tile
+window.opentile = null; //tracks the current open tile
+
+//do stuff here
+
+for (i = 0; i < 16; i++) {
+  add_elem(i, A[i]); //adds event handlers to the tiles.
+}
+
+document.getElementById("overlay_win").onclick = function () {
+  reset();
+};
+
 function add_class(id, cl) {
   var elem = document.getElementById(id);
   if (elem.classList.contains(cl) !== true) {
@@ -13,7 +30,6 @@ function rem_class(id, cl) {
 }
 
 //This function adds the selected class of a selected tile
-
 function add_elem(i, elem) {
   document.getElementById("tile_" + i).onclick = function () {
     window.opentile = i;
@@ -39,7 +55,8 @@ function add_elem(i, elem) {
           add_class("overlay_win", "overlay_win_open");
         }
       } else {
-        rem_delay(window.opentile, window.lasttile); //clears the tiles with a 1 second delay(to let the player see the tile)
+        rem_delay(window.opentile, window.lasttile);
+        //clears the tiles with a 1 second delay(to let the player see the tile)
       }
 
       window.tilecount = 0; //resets the opened tile counter to 0
@@ -71,7 +88,6 @@ function rem_delay(first, second) {
 }
 
 //This function shuffles the tiles
-
 function shuffle() {
   var j;
   var t;
@@ -101,22 +117,10 @@ function shuffle() {
     A[i] = A[j];
     A[j] = t;
   }
-  console.log(A);
   return A;
 }
 
-//this function resets all tiles
-
-function reset_tiles() {
-  for (i = 0; i < 16; i++) {
-    rem_select(i); //turns around tiles
-    add_elem(i, A[i]); //adds events
-    rem_class("tile_" + i, "tile_closed"); //Tiles back to normal opacity..
-  }
-}
-
 //this function resets the game
-
 function reset() {
   window.A = shuffle(); //shuffle tiles and reset variables
   window.paircount = 0;
@@ -124,25 +128,9 @@ function reset() {
   window.lasttile = null;
   window.opentile = null;
 
-  reset_tiles(); //reset all tiles
-
-  rem_class("overlay_win", "overlay_win_open"); //hide victory banner
+  for (i = 0; i < 16; i++) {
+    rem_select(i); //turns around tiles
+    add_elem(i, A[i]); //adds events
+    rem_class("tile_" + i, "tile_closed"); //Tiles back to normal opacity..
+  }
 }
-
-//variables
-
-var A = shuffle(); //shuffle the tiles
-var paircount = 0; //tracks the number of matches
-var tilecount = 0; //tracks the number of open tiles
-var lasttile = null; //tracks the last open tile
-var opentile = null; //tracks the current open tile
-
-//do stuff here
-
-for (i = 0; i < 16; i++) {
-  add_elem(i, A[i]); //adds event handlers to the tiles.
-}
-
-document.getElementById("overlay_win").onclick = function () {
-  reset();
-};

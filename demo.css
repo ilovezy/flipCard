@@ -3,8 +3,111 @@ body {
     padding: 0;
 }
 
-.title {
+.tile_container {
+    overflow: hidden;
+    width: 90vmin;
+    height: 90vmin;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tile {
     display: block;
     float: left;
+    border-radius: 5%;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    width: 17%;
+    height: 17%;
+    margin: 4%;
+    background-color: #57a7cc;
+}
 
+.tile:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 5%;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    transition: transform 0.2s;
+    background-color: #e25445;
+}
+
+.tile_open:after {
+    transition: transform 0.2s;
+    transform: translateX(-105%);
+}
+
+.tile:hover:after {
+    background-color: #e25445;
+}
+
+.tile .fa {
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    font-size: 70px;
+    font-size: 10vmin;
+    line-height: 100px;
+    line-height: 16vmin;
+}
+
+.tile_removed {
+    cursor: default;
+    opacity: 0;
+    transition: opacity 0.5s;
+    background-color: #57a7cc;
+}
+
+
+
+/*Overlay*/
+.overlay_win {
+    position: absolute;
+    bottom: 25vmin;
+    left: 0;
+    height: 40vmin;
+    width: 100%;
+    text-align: center;
+}
+
+.overlay_win {
+    background-color: #4ebb3d;
+}
+
+.overlay_win h2 {
+    font-size: 15vmin;
+    line-height: 15vmin;
+    margin: 5vmin 0px;
+}
+
+.overlay_win h2 {
+    color: #112;
+    font-family: 'Roboto', sans-serif;
+}
+
+#replay {
+    font-size: 7vmin;
+    display: inline-block;
+    border-radius: 1vmin;
+    padding: 2vmin 4vmin;
+    font-family: 'Roboto', sans-serif;
+    cursor: pointer;
+    background-color: #3d78bb;
+    color: #fff;
+}
+
+#replay:hover {
+    background-color: #3c71b3;
+}
+
+.overlay_win {
+    opacity: 0.9;
+    transition: opacity 0.4s;
+    pointer-events: auto;
 }
